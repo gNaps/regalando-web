@@ -2,6 +2,8 @@ import HeaderFriendGifts from "@/components/headers/friend-gitfs.header";
 import FriendGiftsList from "@/components/lists/friends-gift.list";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import LoadingFriendDetail from "./loading";
 
 const FriendDetail = async ({ params }: { params: { friendId: string } }) => {
   const supabase = createServerComponentClient<any>({ cookies });
@@ -23,8 +25,10 @@ const FriendDetail = async ({ params }: { params: { friendId: string } }) => {
 
   return (
     <>
-      <HeaderFriendGifts username={gifts.username} picture={gifts.picture} />
-      <FriendGiftsList gifts={gifts.gifts} userId={gifts.id} />
+      <Suspense fallback={<LoadingFriendDetail />}>
+        <HeaderFriendGifts username={gifts.username} picture={gifts.picture} />
+        <FriendGiftsList gifts={gifts.gifts} userId={gifts.id} />
+      </Suspense>
     </>
   );
 };

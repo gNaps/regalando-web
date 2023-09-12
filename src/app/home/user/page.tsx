@@ -4,6 +4,8 @@ import MyGiftsList from "@/components/lists/my-gift.list";
 import { PlusCircleIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const Users = async () => {
   const supabase = createServerComponentClient<any>({ cookies });
@@ -27,8 +29,10 @@ const Users = async () => {
 
   return (
     <>
-      <HeaderMyGifts />
-      <MyGiftsList gifts={profile.gifts} userId={profile.id} />
+      <Suspense fallback={<Loading />}>
+        <HeaderMyGifts />
+        <MyGiftsList gifts={profile.gifts} userId={profile.id} />
+      </Suspense>
     </>
   );
 };

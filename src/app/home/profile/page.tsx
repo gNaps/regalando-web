@@ -3,6 +3,8 @@ import UpdateProfileForm from "@/components/forms/update-profile.form";
 import Avatar from "@/components/inputs/input-picture.component";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import LoadingProfile from "./loading";
 
 const Profile = async () => {
   const supabase = createServerComponentClient<any>({ cookies });
@@ -21,7 +23,9 @@ const Profile = async () => {
 
   return (
     <>
-      <UpdateProfileForm {...profile} />
+      <Suspense fallback={<LoadingProfile />}>
+        <UpdateProfileForm {...profile} />
+      </Suspense>
     </>
   );
 };

@@ -5,13 +5,15 @@ import { useState } from "react";
 import FriendItem from "./list-item/friend.item";
 import debounce from "debounce";
 import InputSearch from "../inputs/input-search.component";
+import { nephilm } from "@/app/styles/fonts";
 
 interface FriendsListProps {
   friends: FriendModel[];
 }
 
 const FriendsList = ({ friends }: FriendsListProps) => {
-  const [friendsDisplayed, setFriendsDisplayed] = useState<FriendModel[]>(friends);
+  const [friendsDisplayed, setFriendsDisplayed] =
+    useState<FriendModel[]>(friends);
 
   const filterFriends = (filter: string) => {
     if (!!filter) {
@@ -28,13 +30,12 @@ const FriendsList = ({ friends }: FriendsListProps) => {
 
   return (
     <>
-      <div className="mb-10">
+      <h1 className={`text-3xl ${nephilm.className} mb-10`}>Friends gifts</h1>
         <InputSearch
           name="search"
           placeholder="Search friends..."
           onChange={debounce((e: any) => filterFriends(e.target.value), 500)}
         />
-      </div>
 
       {!!friendsDisplayed &&
         !!friendsDisplayed.length &&

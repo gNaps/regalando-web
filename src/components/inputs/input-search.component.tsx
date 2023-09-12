@@ -5,7 +5,7 @@ import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
 interface InputSearchProps {
   placeholder: string;
   name: string;
-  onChange: any;
+  onChange?: any;
 }
 
 const InputSearch = ({ placeholder, name, onChange }: InputSearchProps) => {

@@ -1,6 +1,8 @@
 import GiftDetail from "@/components/gift-detail.component";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import LoadingGiftFriend from "./loading";
 
 interface FriendGiftProps {
   friendId: string;
@@ -31,12 +33,14 @@ const FriendGift = async ({ params }: { params: FriendGiftProps }) => {
   } = await supabase.auth.getUser();
 
   return (
-    <GiftDetail
-      {...gift}
-      canUpdate={false}
-      username={profile.username}
-      userId={profile.id}
-    />
+    <Suspense fallback={<LoadingGiftFriend />}>
+      <GiftDetail
+        {...gift}
+        canUpdate={false}
+        username={profile.username}
+        userId={profile.id}
+      />
+    </Suspense>
   );
 };
 

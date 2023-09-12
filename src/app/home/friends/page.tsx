@@ -1,7 +1,8 @@
-import { nephilm } from "@/app/styles/fonts";
 import FriendsList from "@/components/lists/friends.list";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import LoadingFriends from "./loading";
 
 const Friends = async () => {
   const supabase = createServerComponentClient<any>({ cookies });
@@ -13,8 +14,8 @@ const Friends = async () => {
   const { data: profile, error } = await supabase
     .from("profiles")
     .select()
-    .eq("id", user!.id).single();
-
+    .eq("id", user!.id)
+    .single();
 
   const { data: friendshipData } = await supabase
     .from("friendship")
@@ -30,13 +31,14 @@ const Friends = async () => {
     `
     )
     .eq("invited", profile.id);
-  
+
   const friends = friendshipData as any;
-  
+
   return (
     <>
-      <h1 className={`text-3xl ${nephilm.className} mb-10`}>Friends gifts</h1>
-      <FriendsList friends={friends}/>
+      <Suspense fallback={<LoadingFriends />}>
+        <FriendsList friends={friends} />
+      </Suspense>
     </>
   );
 };

@@ -1,6 +1,8 @@
 import GiftDetail from "@/components/gift-detail.component";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 interface MyGiftProps {
   giftId: string;
@@ -31,10 +33,13 @@ const MyGift = async ({ params }: { params: MyGiftProps }) => {
 
   return (
     <>
-      <GiftDetail
+    <Suspense fallback={<Loading />}>
+    <GiftDetail
         {...gift}
         canUpdate={true}
       />
+      </Suspense>
+      
     </>
   );
 };

@@ -1,0 +1,12 @@
+.skeleton {
+  background: #2f2f2f;
+  background: linear-gradient(110deg, #2f2f2f 8%, #494949 18%, #2f2f2f 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
