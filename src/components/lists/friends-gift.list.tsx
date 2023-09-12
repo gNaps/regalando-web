@@ -2,7 +2,6 @@
 import {useState } from "react";
 import debounce from "debounce";
 import InputSearch from "../inputs/input-search.component";
-import "react-loading-skeleton/dist/skeleton.css";
 import { GiftModel } from "@/models/gift.model";
 import GiftItem from "./list-item/gift.item";
 

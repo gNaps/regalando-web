@@ -5,7 +5,6 @@ import { useState } from "react";
 import FriendItem from "./list-item/friend.item";
 import debounce from "debounce";
 import InputSearch from "../inputs/input-search.component";
-import "react-loading-skeleton/dist/skeleton.css";
 
 interface FriendsListProps {
   friends: FriendModel[];
