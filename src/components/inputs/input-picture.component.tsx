@@ -20,6 +20,7 @@ export default function Avatar({ onUpload, currentUrl }: AvatarProps) {
   const imageRef = React.useRef(null);
   const inputFileRef: any = React.useRef(null);
   const { result, uploader } = usePicture();
+  const currentPictureUrl = useSupabaseUrlImage(currentPicture || '')
   //const [uploading, setUploading] = useState(false)
 
   //   useEffect(() => {
@@ -89,7 +90,7 @@ export default function Avatar({ onUpload, currentUrl }: AvatarProps) {
             onClick={() => inputFileRef.current.click()}
           >
             <ProfilePicture
-              url={useSupabaseUrlImage(currentPicture)}
+              url={currentPictureUrl}
               size="large"
               shape="circle"
             />

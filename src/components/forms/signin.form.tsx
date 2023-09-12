@@ -8,6 +8,7 @@ import Button from "../button.component";
 import Link from "next/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Welcome from "../welcome.component";
+import Image from "next/image";
 
 export default function SignInForm() {
   const supabase = createClientComponentClient();
@@ -40,7 +41,7 @@ export default function SignInForm() {
 
   return (
     <>
-      <img src="splash_logo.svg" width={200} />
+      <Image src="splash_logo.svg" width={200} alt="logo" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className}`}>Welcome back!</h1>
         <p className="">Use credentials to access your account</p>
@@ -92,7 +93,7 @@ export default function SignInForm() {
       />
       <Link href={'/sign-up'}>
         <p className="text-center mt-10">
-          Don't have an account?{" "}
+          Do not have an account?
           <span className="font-bold text-primary">Sign up</span>
         </p>
       </Link>

@@ -108,7 +108,7 @@ const UpdateProfileForm = ({
           validationSchema={{
             required: "Birthday is required",
           }}
-          register={register}
+          register={register as any}
           errors={errors}
         />
 

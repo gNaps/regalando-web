@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Button from "../button.component";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import Image from "next/image";
 
 export default function SignUpForm() {
   const supabase = createClientComponentClient();
@@ -38,7 +39,7 @@ export default function SignUpForm() {
 
   return (
     <>
-      <img src="splash_logo.svg" width={200} />
+      <Image src="splash_logo.svg" width={200} alt="logo" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className}`}>
           Welcome to Regalando!

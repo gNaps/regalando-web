@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { nephilm } from "@/app/styles/fonts";
 import Button from "./button.component";
+import Image from "next/image";
 
 const Welcome = () => {
   const [index, setIndex] = useState(0);
@@ -18,7 +19,7 @@ const Welcome = () => {
 
   return (
     <>
-      <img src="welcome-1.svg" />
+      <Image src="welcome-1.svg" alt="welcome" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className} mb-10`}>
           Farewell undesirable gifts

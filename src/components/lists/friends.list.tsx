@@ -43,7 +43,7 @@ const FriendsList = ({ friends }: FriendsListProps) => {
       {!friendsDisplayed ||
         (!friendsDisplayed.length && (
           <p className="text-center">
-            No result found. It looks like you haven't been invited to any gift
+            No result found. It looks like you have not been invited to any gift
             lists yet. Ask your friends to invite you to their gift lists.
           </p>
         ))}

@@ -32,8 +32,8 @@ export default function UpdatePasswordForm() {
         <h1 className={`text-3xl ${nephilm.className}`}>
           Enter your new password
         </h1>
-        <p className="">
-          Enter your new password and you'll be redirected to the home page
+        <p>
+          Enter your new password and you will be redirected to the home page
         </p>
       </span>
       <form

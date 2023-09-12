@@ -21,7 +21,7 @@ interface GiftDetailProps {
   taken: string;
 }
 
-const GiftDetail = async ({
+const GiftDetail = ({
   userId,
   name,
   canUpdate,
