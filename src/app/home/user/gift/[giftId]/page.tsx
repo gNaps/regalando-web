@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 
 interface MyGiftProps {
-  giftId: string;
+  giftId: number;
 }
 
 const MyGift = async ({ params }: { params: MyGiftProps }) => {

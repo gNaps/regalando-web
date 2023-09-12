@@ -39,7 +39,6 @@ export const UserContextProvider = ({ children }: any) => {
             .eq("id", supabaseUser.user.id);
 
           if (!!profiles && !!profiles.length) {
-            console.log("set profile");
             setProfile(profiles[0]);
           }
         }

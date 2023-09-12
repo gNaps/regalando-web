@@ -1,18 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Button from "../button.component";
 import { useForm } from "react-hook-form";
-import InputText from "../inputs/input-text.component";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Avatar from "../inputs/input-picture.component";
 import InputDate from "../inputs/input-date.component";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { ProfileModel } from "@/models/profile.model";
-import ProfilePicture from "../profile-picture.component";
-import { useSupabaseUrlImage } from "@/hooks/useSupabaseUrlmage";
 import { nephilm } from "@/app/styles/fonts";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
 const UpdateProfileForm = ({
   id,
@@ -34,13 +32,11 @@ const UpdateProfileForm = ({
       picture: picture,
     },
   });
-  const router = useRouter();
 
   const onSaveProfile = async (data: any) => {
     let filePath;
 
     if (typeof data.picture !== "string") {
-      console.log("elimina picture", picture);
       let { error: deleteError } = await supabase.storage
         .from("pictures")
         .remove([picture!]);
@@ -52,8 +48,6 @@ const UpdateProfileForm = ({
 
       const fileExt = data.picture.name.split(".").pop();
       filePath = `${id}-${Math.random()}.${fileExt}`;
-
-      console.log("upload file", filePath);
       let { error: uploadError } = await supabase.storage
         .from("pictures")
         .upload(filePath, data.picture, {
@@ -67,7 +61,6 @@ const UpdateProfileForm = ({
       }
     }
 
-    console.log("id", id);
     let { error: saveError } = await supabase
       .from("profiles")
       .update({ birth: data.birth, ...(filePath ? { picture: filePath } : {}) })
@@ -80,7 +73,6 @@ const UpdateProfileForm = ({
   };
 
   const logout = async () => {
-    console.log("logout");
     await supabase.auth.signOut();
     window.location.reload();
   };

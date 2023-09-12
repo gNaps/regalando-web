@@ -8,12 +8,14 @@ interface HeaderGiftDetailProps {
   name: string;
   canUpdate: boolean;
   friendId?: string;
+  giftId: number;
 }
 
 const HeaderGiftDetail = ({
   name,
   canUpdate,
   friendId,
+  giftId
 }: HeaderGiftDetailProps) => {
   const router = useRouter();
   return (
@@ -29,7 +31,7 @@ const HeaderGiftDetail = ({
         <div className="ms-auto">
           <PencilSquareIcon
             className="h-7 w-7 text-primary cursor-pointer"
-            onClick={() => console.log("update gift")}
+            onClick={() => router.push(`/home/user/gift/${giftId}/edit`)}
           />
         </div>
       )}

@@ -19,6 +19,7 @@ interface GiftDetailProps {
   retail_store: string;
   online_store: string;
   taken: string;
+  id: number
 }
 
 const GiftDetail = ({
@@ -31,10 +32,11 @@ const GiftDetail = ({
   online_store,
   taken,
   username,
+  id
 }: GiftDetailProps) => {
   return (
     <div className="flex flex-col flex-1">
-      <HeaderGiftDetail name={name} canUpdate={canUpdate} friendId={userId} />
+      <HeaderGiftDetail name={name} canUpdate={canUpdate} friendId={userId} giftId={id} />
 
       <div className="mb-5">
         <h1 className="text-2xl font-semibold mb-2">What is?</h1>
