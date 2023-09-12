@@ -31,24 +31,33 @@ const CompleteProfileForm = ({ userId }: CompleteProfileProps) => {
     if (index < 2) {
       setIndex(index + 1);
     } else {
-      const fileExt = picture.name.split(".").pop();
-      const filePath = `${userId}-${Math.random()}.${fileExt}`;
+      let filePath;
 
-      let { error: uploadError } = await supabase.storage
-        .from("pictures")
-        .upload(filePath, picture, {
-          cacheControl: "3600",
-          upsert: false,
-        });
+      if (!!picture) {
+        const fileExt = picture.name.split(".").pop();
+        filePath = `${userId}-${Math.random()}.${fileExt}`;
 
-      if (!!uploadError) {
-        console.error("uploadError", uploadError);
-        return;
+        let { error: uploadError } = await supabase.storage
+          .from("pictures")
+          .upload(filePath, picture, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+        if (!!uploadError) {
+          console.error("uploadError", uploadError);
+          return;
+        }
       }
 
       const { error } = await supabase
         .from("profiles")
-        .update({ username, birth, picture: filePath, isComplete: true })
+        .update({
+          username,
+          birth,
+          ...(filePath ? { picture: filePath } : {}),
+          isComplete: true,
+        })
         .eq("id", userId);
 
       router.push("/");

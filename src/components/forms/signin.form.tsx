@@ -1,4 +1,5 @@
 "use client";
+
 import { nephilm } from "@/app/styles/fonts";
 import InputText from "../inputs/input-text.component";
 import { LockClosedIcon, UserCircleIcon } from "@heroicons/react/24/outline";
@@ -7,7 +8,6 @@ import { useState } from "react";
 import Button from "../button.component";
 import Link from "next/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import Welcome from "../welcome.component";
 import Image from "next/image";
 
 export default function SignInForm() {
@@ -41,7 +41,7 @@ export default function SignInForm() {
 
   return (
     <>
-      <Image src="splash_logo.svg" width={200} alt="logo" />
+      <Image src="/splash_logo.svg" width={200} height={200} alt="logo" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className}`}>Welcome back!</h1>
         <p className="">Use credentials to access your account</p>
@@ -94,7 +94,7 @@ export default function SignInForm() {
       <Link href={'/sign-up'}>
         <p className="text-center mt-10">
           Do not have an account?
-          <span className="font-bold text-primary">Sign up</span>
+          <span className="font-bold text-primary"> Sign up</span>
         </p>
       </Link>
     </>

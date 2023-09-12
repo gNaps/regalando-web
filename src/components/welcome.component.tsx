@@ -19,7 +19,7 @@ const Welcome = () => {
 
   return (
     <>
-      <Image src="welcome-1.svg" alt="welcome" />
+      <Image src="/welcome-1.svg" alt="welcome" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className} mb-10`}>
           Farewell undesirable gifts

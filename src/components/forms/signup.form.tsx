@@ -39,7 +39,7 @@ export default function SignUpForm() {
 
   return (
     <>
-      <Image src="splash_logo.svg" width={200} alt="logo" />
+      <Image src="/splash_logo.svg" width={200} alt="logo" />
       <span className="my-10 text-center">
         <h1 className={`text-3xl ${nephilm.className}`}>
           Welcome to Regalando!

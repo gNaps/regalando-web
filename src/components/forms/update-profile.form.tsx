@@ -36,13 +36,11 @@ const UpdateProfileForm = ({
   });
   const router = useRouter();
 
-  console.log("birth", birth);
-
   const onSaveProfile = async (data: any) => {
     let filePath;
 
     if (typeof data.picture !== "string") {
-        console.log('elimina picture', picture)
+      console.log("elimina picture", picture);
       let { error: deleteError } = await supabase.storage
         .from("pictures")
         .remove([picture!]);
@@ -55,7 +53,7 @@ const UpdateProfileForm = ({
       const fileExt = data.picture.name.split(".").pop();
       filePath = `${id}-${Math.random()}.${fileExt}`;
 
-      console.log('upload file', filePath);
+      console.log("upload file", filePath);
       let { error: uploadError } = await supabase.storage
         .from("pictures")
         .upload(filePath, data.picture, {
@@ -79,6 +77,12 @@ const UpdateProfileForm = ({
       console.error("saveError", saveError);
       return;
     }
+  };
+
+  const logout = async () => {
+    console.log("logout");
+    await supabase.auth.signOut();
+    window.location.reload();
   };
 
   return (
@@ -112,8 +116,9 @@ const UpdateProfileForm = ({
           errors={errors}
         />
 
-        <span className="mt-auto">
-          <Button type="submit" value="Next" theme="primary"></Button>
+        <span className="mt-10 flex flex-col gap-6">
+          <Button type="submit" value="Update" theme="primary"></Button>
+          <Button value="Logout" theme="secondary" onClick={logout}></Button>
         </span>
       </form>
     </>

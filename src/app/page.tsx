@@ -17,7 +17,7 @@ export default async function Home() {
   const profile = profiles![0]
 
   if(!profile.isComplete) {
-    redirect('/complete-profile')
+    redirect('/auth/complete-profile')
   } else {
     redirect('/home/friends')
   }

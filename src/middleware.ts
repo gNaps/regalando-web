@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  console.log("MIDDLEWARE");
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
 
@@ -26,5 +25,13 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/auth/:path*", "/home/:path*"],
+  matcher: [
+    "/",
+    "/auth/sign-in",
+    "/auth/sign-up",
+    "/auth/complete-profile",
+    "/auth/recovery-password",
+    "/auth/update-password",
+    "/home/:path*",
+  ],
 };
