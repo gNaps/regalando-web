@@ -4,6 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import LoadingFriendDetail from "./loading";
+import { useSupabaseUrlImage } from "@/hooks/useSupabaseUrlmage";
 
 const FriendDetail = async ({ params }: { params: { friendId: string } }) => {
   const supabase = createServerComponentClient<any>({ cookies });
@@ -22,11 +23,12 @@ const FriendDetail = async ({ params }: { params: { friendId: string } }) => {
     .single();
 
   const gifts = giftsData as any;
+  const pictureUrl = useSupabaseUrlImage(gifts.picture);
 
   return (
     <>
       <Suspense fallback={<LoadingFriendDetail />}>
-        <HeaderFriendGifts username={gifts.username} picture={gifts.picture} />
+        <HeaderFriendGifts username={gifts.username} picture={pictureUrl} />
         <FriendGiftsList gifts={gifts.gifts} userId={gifts.id} />
       </Suspense>
     </>

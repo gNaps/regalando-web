@@ -13,7 +13,7 @@ const HeaderMyGifts = () => {
       <div className="flex items-center gap-5">
         <UserGroupIcon
           className="h-7 w-7 text-white cursor-pointer"
-          onClick={() => router.push("/home/user/new")}
+          onClick={() => router.push("/home/user/followers")}
         />
         <PlusCircleIcon
           className="h-7 w-7 text-primary cursor-pointer"

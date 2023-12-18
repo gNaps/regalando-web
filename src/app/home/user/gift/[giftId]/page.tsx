@@ -23,23 +23,11 @@ const MyGift = async ({ params }: { params: MyGiftProps }) => {
     data: { user },
   } = await supabase.auth.getUser();
 
-//   const { data: profileData } = await supabase
-//     .from("profiles")
-//     .select("*")
-//     .eq("id", user!.id)
-//     .single();
-
-//   const profile = profileData as any;
-
   return (
     <>
-    <Suspense fallback={<Loading />}>
-    <GiftDetail
-        {...gift}
-        canUpdate={true}
-      />
+      <Suspense fallback={<Loading />}>
+        <GiftDetail {...gift} canUpdate={true} />
       </Suspense>
-      
     </>
   );
 };

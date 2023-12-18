@@ -46,7 +46,7 @@ const GiftForm = ({
     id ? categories.find((c) => c.id === category)! : categories[0]
   );
 
-  const onSubmit = async (data: any) => {;
+  const onSubmit = async (data: any) => {
     if (!!id) {
       const { data: updatedGift } = await supabase
         .from("gifts")

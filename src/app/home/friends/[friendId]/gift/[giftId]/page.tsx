@@ -14,7 +14,14 @@ const FriendGift = async ({ params }: { params: FriendGiftProps }) => {
 
   const { data: giftData, error } = await supabase
     .from("gifts")
-    .select("*")
+    .select(
+      `
+      *,
+      taken:gifts_taken_fkey (
+        id, username, email, picture
+        )
+    `
+    )
     .eq("id", params.giftId)
     .single();
 
@@ -39,6 +46,7 @@ const FriendGift = async ({ params }: { params: FriendGiftProps }) => {
         canUpdate={false}
         username={profile.username}
         userId={profile.id}
+        loggedUser={user?.id}
       />
     </Suspense>
   );
